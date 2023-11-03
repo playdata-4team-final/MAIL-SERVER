@@ -36,7 +36,7 @@ public class MailController {
     //쪽지 제목 보기
     @GetMapping("/getMailAllTitles")
     public LmsResponse<List<MailRes>> getMailAllTitles(GetRequest getRequest){
-        List<MailRes> mailAllTitles = mailService.getMailAllTitles();
+        List<MailRes> mailAllTitles = mailService.getMailAllTitles(getRequest);
         return new LmsResponse<>(HttpStatus.OK, mailAllTitles, "서비스 성공", "에러 없음", LocalDateTime.now());
     };
 
