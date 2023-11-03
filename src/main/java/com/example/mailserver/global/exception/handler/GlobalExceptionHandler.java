@@ -1,8 +1,9 @@
 package com.example.mailserver.global.exception.handler;
 
-import com.example.notice.global.exception.ClientException;
-import com.example.notice.global.exception.DuplicateException;
-import com.example.notice.global.exception.MethodException;
+
+import com.example.mailserver.global.exception.ClientException;
+import com.example.mailserver.global.exception.DuplicateException;
+import com.example.mailserver.global.exception.MethodException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;

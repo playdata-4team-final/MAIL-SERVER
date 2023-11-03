@@ -1,6 +1,6 @@
 package com.example.mailserver.global.responsehandler;
 
-import com.example.notice.global.util.ResponseUtil;
+import com.example.mailserver.global.util.ResponseUtil;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

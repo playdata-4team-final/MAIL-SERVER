@@ -25,14 +25,14 @@ public class MailService {
     private final MemberRepository memberRepository;
 
     //쪽지 보내기
-    private MailRes sendMail(SendRequest request){
+    public MailRes sendMail(SendRequest request){
         Mail save = mailRepository.save(request.toEntity());
         MailRes mailRes = new MailRes(save);
         return mailRes;
     };
 
     //쪽지 제목 보기
-    private List<MailRes> getMailAllTitles(GetRequest getRequest){
+    public List<MailRes> getMailAllTitles(GetRequest getRequest){
         List<MailDto> mailDtoList = mailRepository.findTitleByreceiverId(getRequest.getReceiverId()).get();
 
         List<MailRes> resultList = new ArrayList<>();
@@ -44,7 +44,7 @@ public class MailService {
     };
 
     //쪽지 내용보기
-    private MailRes getMailMessage(GetMessageRequest getMessageRequest){
+    public MailRes getMailMessage(GetMessageRequest getMessageRequest){
         MailDto mailDto = mailRepository.findMessageById(getMessageRequest.getId()).get();
         MailRes mailRes = new MailRes(mailDto.toEntity());
         return mailRes;
@@ -71,7 +71,7 @@ public class MailService {
 
 
     //단체 쪽지 보내기(교수)
-    private MailRes sendGroupMailByProfessor(SendGroupRequest request){
+    public MailRes sendGroupMailByProfessor(SendGroupRequest request){
 
         Mail save = mailRepository.save(request.toEntity());
         MailRes mailRes = new MailRes(save);
@@ -79,7 +79,7 @@ public class MailService {
     };
 
     //메일 삭제
-    private String deleteMail(List<GetMessageRequest> getMessageRequests){
+    public String deleteMail(List<GetMessageRequest> getMessageRequests){
 
         for(GetMessageRequest request : getMessageRequests) {
             mailRepository.deleteAllMailById(request.getId());
