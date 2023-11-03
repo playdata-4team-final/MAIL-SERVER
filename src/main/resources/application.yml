@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: LMS-SERVER
+    name: MAIL-SERVER
 
   datasource:
     url: jdbc:mysql://localhost:3306/mail?serverTimezone=Asia/Seoul
