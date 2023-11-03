@@ -1,4 +1,4 @@
-package com.example.notice.professor.dto;
+package com.example.mailserver.professor.dto;
 
 
 public class ProfessorDto {

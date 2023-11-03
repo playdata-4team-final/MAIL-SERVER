@@ -1,4 +1,4 @@
-package com.example.notice.global.exception;
+package com.example.mailserver.global.exception;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.example.notice.global.exception.handler;
+package com.example.mailserver.global.exception.handler;
 
 import com.example.notice.global.exception.ClientException;
 import com.example.notice.global.exception.DuplicateException;

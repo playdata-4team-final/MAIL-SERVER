@@ -1,2 +1,4 @@
-package com.example.mailserver.mail.controller;public class MailController {
+package com.example.mailserver.mail.controller;
+
+public class MailController {
 }

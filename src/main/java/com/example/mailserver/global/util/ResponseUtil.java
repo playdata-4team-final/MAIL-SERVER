@@ -1,4 +1,4 @@
-package com.example.notice.global.util;
+package com.example.mailserver.global.util;
 
 import com.example.notice.global.domain.response.LmsResponse;
 import org.springframework.http.HttpStatus;

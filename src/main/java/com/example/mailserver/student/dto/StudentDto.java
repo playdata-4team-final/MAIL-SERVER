@@ -1,4 +1,4 @@
-package com.example.notice.student.dto;
+package com.example.mailserver.student.dto;
 
 
 public class StudentDto {

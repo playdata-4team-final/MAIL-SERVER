@@ -1,2 +1,4 @@
-package com.example.mailserver.mail.entity;public class Mail {
+package com.example.mailserver.mail.entity;
+
+public class Mail {
 }

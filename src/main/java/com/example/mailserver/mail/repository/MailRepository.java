@@ -1,2 +1,4 @@
-package com.example.mailserver.mail.repository;public interface MailRepository {
+package com.example.mailserver.mail.repository;
+
+public interface MailRepository {
 }

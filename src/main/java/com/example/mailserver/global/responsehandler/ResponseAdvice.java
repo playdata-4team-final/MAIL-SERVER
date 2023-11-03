@@ -1,4 +1,4 @@
-package com.example.notice.global.responsehandler;
+package com.example.mailserver.global.responsehandler;
 
 import com.example.notice.global.util.ResponseUtil;
 import org.springframework.core.MethodParameter;
