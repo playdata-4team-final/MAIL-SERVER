@@ -9,19 +9,14 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class GetRequest {
-
-    private String senderId;
-    private String receiverId;
-    private String message;
-
+    private String receiverEmail;
+    private Long majorId;
     public Mail toEntity(){
         return Mail
                 .builder()
-                .senderId(senderId)
-                .receiverId(receiverId)
-                .message(message)
-                .sendTime(LocalDateTime.now())
-                .check(false)
+                .receiverEmail(receiverEmail)
+                .checkMail(true)
+                .majorId(majorId)
                 .build();
     }
 }

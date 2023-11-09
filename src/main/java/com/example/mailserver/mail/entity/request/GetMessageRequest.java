@@ -11,19 +11,19 @@ import java.time.LocalDateTime;
 public class GetMessageRequest {
 
     private Long id;
-    private String senderId;
-    private String receiverId;
+    private String senderEmail;
+    private String receiverEmail;
     private String message;
 
     public Mail toEntity(){
         return Mail
                 .builder()
                 .id(id)
-                .senderId(senderId)
-                .receiverId(receiverId)
+                .senderEmail(senderEmail)
+                .receiverEmail(receiverEmail)
                 .message(message)
                 .sendTime(LocalDateTime.now())
-                .check(false)
+                .checkMail(false)
                 .build();
     }
 }

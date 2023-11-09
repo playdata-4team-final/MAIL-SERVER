@@ -11,31 +11,31 @@ import java.time.LocalDateTime;
 public class MailDto {
 
     private Long id;
-    private String senderId;
-    private String receiverId;
+    private String senderEmail;
+    private String receiverEmail;
     private String title;
     private String message;
-    private Boolean check;
+    private boolean checkMail;
     private LocalDateTime sendTime;
 
 
     public MailDto(Mail mail) {
         this.id = mail.getId();
-        this.senderId = mail.getSenderId();
-        this.receiverId = mail.getReceiverId();
+        this.senderEmail = mail.getSenderEmail();
+        this.receiverEmail = mail.getReceiverEmail();
         this.title = mail.getTitle();
         this.message = mail.getMessage();
-        this.check = mail.getCheck();
+        this.checkMail = false;
         this.sendTime = mail.getSendTime();
     }
 
-    public MailDto(Long id, String senderId, String receiverId, String title, String message, Boolean check, LocalDateTime sendTime) {
+    public MailDto(Long id, String senderEmail, String receiverEmail, String title, String message, boolean checkMail, LocalDateTime sendTime) {
         this.id = id;
-        this.senderId = senderId;
-        this.receiverId = receiverId;
+        this.senderEmail = senderEmail;
+        this.receiverEmail = receiverEmail;
         this.title = title;
         this.message = message;
-        this.check = check;
+        this.checkMail = checkMail;
         this.sendTime = sendTime;
     }
 
@@ -44,10 +44,10 @@ public class MailDto {
                 .builder()
                 .id(id)
                 .title(title)
-                .senderId(senderId)
-                .receiverId(receiverId)
+                .senderEmail(senderEmail)
+                .receiverEmail(receiverEmail)
                 .message(message)
-                .check(check)
+                .checkMail(false)
                 .sendTime(sendTime)
                 .build();
    }

@@ -18,13 +18,14 @@ import java.time.LocalDateTime;
 @Builder
 public class Mail {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String senderId;
-    private String receiverId;
+
+    private String senderEmail;
+    private String receiverEmail;
     private String title;
     private String message;
-    private Boolean check;
+    private boolean checkMail;
     private LocalDateTime sendTime;
     private Long majorId;
 

@@ -10,19 +10,19 @@ import java.time.LocalDateTime;
 @Setter
 public class SendGroupRequest {
 
-    private String senderId;
-    private String receiverId;
+    private String senderEmail;
+    private String title;
     private String message;
     private Long majorId;
 
     public Mail toEntity(){
         return Mail
                 .builder()
-                .senderId(senderId)
-                .receiverId(receiverId)
+                .senderEmail(senderEmail)
+                .title(title)
                 .message(message)
                 .sendTime(LocalDateTime.now())
-                .check(false)
+                .checkMail(false)
                 .majorId(majorId)
                 .build();
     }

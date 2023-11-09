@@ -12,42 +12,45 @@ import java.time.LocalDateTime;
 public class MailRes {
 
     private Long id;
-    private String senderId;
-    private String receiverId;
+    private String senderEmail;
+    private String receiverEmail;
     private String message;
+    private Long majorId;
     private LocalDateTime sendTime;
-    private Boolean check;
+    private boolean checkMail;
     private String title;
 
     public MailRes(Mail mail) {
         this.id = mail.getId();
         this.title = mail.getTitle();
-        this.senderId = mail.getSenderId();
-        this.receiverId = mail.getReceiverId();
+        this.senderEmail = mail.getSenderEmail();
+        this.receiverEmail = mail.getReceiverEmail();
         this.message = mail.getMessage();
         this.sendTime = mail.getSendTime();
-        this.check=mail.getCheck();
+        this.checkMail= false;
+        this.majorId = mail.getMajorId();
     }
 
-    public MailRes(Long id, String senderId, String receiverId, String message, LocalDateTime sendTime, Boolean check, String title) {
+    public MailRes(Long id, String senderEmail, String receiverEmail, String message, LocalDateTime sendTime, String title ,Long majorId) {
         this.id = id;
-        this.senderId = senderId;
-        this.receiverId = receiverId;
+        this.senderEmail = senderEmail;
+        this.receiverEmail = receiverEmail;
         this.message = message;
         this.sendTime = sendTime;
-        this.check = check;
+        this.checkMail = false;
         this.title = title;
+        this.majorId =majorId;
     }
 
     public Mail toEntity(){
         return  Mail
                 .builder()
                 .id(id)
-                .senderId(senderId)
-                .receiverId(receiverId)
+                .senderEmail(senderEmail)
+                .receiverEmail(receiverEmail)
                 .message(message)
                 .sendTime(sendTime)
-                .check(check)
+                .checkMail(false)
                 .title(title)
                 .build();
     }

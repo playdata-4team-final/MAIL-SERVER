@@ -1,17 +1,19 @@
 package com.example.mailserver.mail.service;
 
 import com.example.mailserver.global.dto.MailDto;
+import com.example.mailserver.global.exception.NotFoundException;
 import com.example.mailserver.mail.entity.Mail;
 import com.example.mailserver.mail.entity.MemberEntity;
-import com.example.mailserver.mail.entity.request.GetMessageRequest;
-import com.example.mailserver.mail.entity.request.GetRequest;
-import com.example.mailserver.mail.entity.request.SendGroupRequest;
-import com.example.mailserver.mail.entity.request.SendRequest;
+import com.example.mailserver.mail.entity.request.*;
 import com.example.mailserver.mail.entity.response.MailRes;
+import com.example.mailserver.mail.entity.response.MemberRes;
 import com.example.mailserver.mail.repository.MailRepository;
 import com.example.mailserver.mail.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MailService {
 
     private final MailRepository mailRepository;
@@ -26,14 +29,20 @@ public class MailService {
 
     //쪽지 보내기
     public MailRes sendMail(SendRequest request){
-        Mail save = mailRepository.save(request.toEntity());
-        MailRes mailRes = new MailRes(save);
-        return mailRes;
+
+        MemberEntity memberEntity = memberRepository.findByUserEmail(request.getReceiverEmail()).orElse(null);
+        if(memberEntity != null) {
+            Mail save = mailRepository.save(request.toEntity());
+            MailRes mailRes = new MailRes(save);
+            return mailRes;
+        } else {
+            throw new NotFoundException("해당 유저가 없습니다.");
+        }
     };
 
     //쪽지 제목 보기
-    public List<MailRes> getMailAllTitles(GetRequest getRequest){
-        List<MailDto> mailDtoList = mailRepository.findTitleByreceiverId(getRequest.getReceiverId()).get();
+    public List<MailRes> getAllMail(GetRequest getRequest){
+        List<MailDto> mailDtoList = mailRepository.findAllByReceiverId(getRequest.getReceiverEmail(), getRequest.getMajorId()).get();
 
         List<MailRes> resultList = new ArrayList<>();
         for(MailDto mail : mailDtoList){
@@ -56,16 +65,14 @@ public class MailService {
 
 
         for (MemberEntity member : members) {
-            MailRes mail = new MailRes(Mail.builder().senderId(request.getSenderId()).build());
-            mail.setReceiverId(member.getId().toString());
+            MailRes mail = new MailRes(Mail.builder().senderEmail(request.getSenderEmail()).build());
+            mail.setReceiverEmail(member.getId().toString());
             mail.setSendTime(LocalDateTime.now());
             mail.setMessage(request.getMessage());
 
             // 메일 저장
             Mail savedMail = mailRepository.save(mail.toEntity());
-
         }
-
         return "Success Send!";
     }
 
@@ -77,15 +84,13 @@ public class MailService {
         MailRes mailRes = new MailRes(save);
         return mailRes;
     };
-
+    
     //메일 삭제
-    public String deleteMail(List<GetMessageRequest> getMessageRequests){
-
-        for(GetMessageRequest request : getMessageRequests) {
-            mailRepository.deleteAllMailById(request.getId());
-        }
-        return "Success Delete!";
-    };
+    @Transactional
+    public String deleteMails(DeleteRequest deleteRequest) {
+            mailRepository.deleteMailByIdsQuery(deleteRequest.getMailIds());
+            return "Success Delete!";
+    }
 
 
 }

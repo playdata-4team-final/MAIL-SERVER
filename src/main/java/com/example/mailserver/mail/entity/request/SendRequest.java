@@ -10,18 +10,23 @@ import java.time.LocalDateTime;
 @Setter
 public class SendRequest {
 
-    private String senderId;
-    private String receiverId;
+    private String senderEmail;
+    private String title;
+    private Long majorId;
+    private String receiverEmail;
     private String message;
 
     public Mail toEntity(){
         return Mail
                 .builder()
-                .senderId(senderId)
-                .receiverId(receiverId)
+                .senderEmail(senderEmail)
+                .receiverEmail(receiverEmail)
                 .message(message)
+                .majorId(majorId)
+                .title(title)
                 .sendTime(LocalDateTime.now())
-                .check(false)
+                .majorId(majorId)
+                .checkMail(false)
                 .build();
     }
 

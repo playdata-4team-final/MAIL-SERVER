@@ -1,8 +1,9 @@
-//교수 더미 데이터
-INSERT INTO professor (id, professor_name, ph_number, email)
-        VALUES ('7d6f858a-d8bd-4074-8c6e-d9c47e21b1a6', '오성', '010-0000-0000', 'john.doe@example.com');
+//멤버 더미 데이터
+INSERT INTO member_entity (user_id, name, ph_number, email, status, role)
+VALUES ('7d6f858a-d8bd-4074-8c6e-d9c47e21b1a6', '오성', '010-0000-0000', 'john.doe@example.com', 'PROFESSOR', 'NORMAL');
 
-//룸 더미 데이터
-INSERT INTO room (id, room_check, room_number)
-    VALUES(1, false, 101);
+INSERT INTO member_entity (user_id, name, ph_number, email, status, role)
+VALUES ('7d6f858a-d8bd-2375-8c6e-d9c47e21b1a6', '오성', '010-0000-0000', 'CCCn.doe@example.com', 'ADMIN', 'NORMAL');
 
+INSERT INTO member_entity (user_id, name, ph_number, email, status, role)
+VALUES ('7d6f858a-d8bd-1074-8c6e-d9c47e21b1a6', '오성', '010-0000-0000', 'jFEn.doe@example.com', 'STUDENT', 'NORMAL');

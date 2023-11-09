@@ -16,8 +16,8 @@ import java.util.UUID;
 public class MemberEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -26,9 +26,9 @@ public class MemberEntity {
     private String userId;
 
     @Column(nullable = false)
-    private String password;
-
     private String email;
+
+    private Long majorId;
 
     private String phNumber;
 
