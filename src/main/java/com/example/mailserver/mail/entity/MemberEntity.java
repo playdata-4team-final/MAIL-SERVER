@@ -29,7 +29,7 @@ public class MemberEntity {
     @Column(nullable = false)
     private String email;
 
-    private Long majorId;
+    private String majorName;
 
     private String phNumber;
 

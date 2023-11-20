@@ -27,6 +27,13 @@ public class MailService {
     private final MailRepository mailRepository;
     private final MemberRepository memberRepository;
 
+
+
+    public MemberEntity getMajorName(String name){
+        MemberEntity memberEntity = memberRepository.findByUserIdAndGetMajorName(name).get();
+        return memberEntity;
+    }
+
     //쪽지 보내기
     public MailRes sendMail(SendRequest request){
 
