@@ -25,6 +25,14 @@ public class MailController {
 
     private final MailService mailService;
 
+    //majorName 찾아오기
+    @GetMapping("/{name}")
+    public LmsResponse<MemberEntity> getMajorId(@PathVariable String name){
+        MemberEntity m = mailService.getMajorName(name);
+        return new LmsResponse<>(HttpStatus.OK, m, " 서비스 성공", "", LocalDateTime.now());
+    }
+
+
     //쪽지 보내기
     @PostMapping("/sendMail")
     public LmsResponse<MailRes> sendMail(@RequestBody SendRequest request){
