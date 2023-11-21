@@ -12,7 +12,7 @@ public class MailDto {
 
     private Long id;
     private String senderEmail;
-    private String receiverEmail;
+    private String userId;
     private String title;
     private String message;
     private boolean checkMail;
@@ -22,17 +22,17 @@ public class MailDto {
     public MailDto(Mail mail) {
         this.id = mail.getId();
         this.senderEmail = mail.getSenderEmail();
-        this.receiverEmail = mail.getReceiverEmail();
+        this.userId = mail.getUserId();
         this.title = mail.getTitle();
         this.message = mail.getMessage();
         this.checkMail = false;
         this.sendTime = mail.getSendTime();
     }
 
-    public MailDto(Long id, String senderEmail, String receiverEmail, String title, String message, boolean checkMail, LocalDateTime sendTime) {
+    public MailDto(Long id, String userId, String receiverEmail, String title, String message, boolean checkMail, LocalDateTime sendTime) {
         this.id = id;
-        this.senderEmail = senderEmail;
-        this.receiverEmail = receiverEmail;
+        this.senderEmail = userId;
+        this.userId = receiverEmail;
         this.title = title;
         this.message = message;
         this.checkMail = checkMail;
@@ -45,7 +45,7 @@ public class MailDto {
                 .id(id)
                 .title(title)
                 .senderEmail(senderEmail)
-                .receiverEmail(receiverEmail)
+                .userId(userId)
                 .message(message)
                 .checkMail(false)
                 .sendTime(sendTime)

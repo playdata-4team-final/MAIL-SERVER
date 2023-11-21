@@ -13,7 +13,7 @@ public class MailRes {
 
     private Long id;
     private String senderEmail;
-    private String receiverEmail;
+    private String userId;
     private String message;
     private Long majorId;
     private LocalDateTime sendTime;
@@ -24,17 +24,17 @@ public class MailRes {
         this.id = mail.getId();
         this.title = mail.getTitle();
         this.senderEmail = mail.getSenderEmail();
-        this.receiverEmail = mail.getReceiverEmail();
+        this.userId = mail.getUserId();
         this.message = mail.getMessage();
         this.sendTime = mail.getSendTime();
         this.checkMail= false;
         this.majorId = mail.getMajorId();
     }
 
-    public MailRes(Long id, String senderEmail, String receiverEmail, String message, LocalDateTime sendTime, String title ,Long majorId) {
+    public MailRes(Long id, String senderEmail, String userId, String message, LocalDateTime sendTime, String title ,Long majorId) {
         this.id = id;
         this.senderEmail = senderEmail;
-        this.receiverEmail = receiverEmail;
+        this.userId = userId;
         this.message = message;
         this.sendTime = sendTime;
         this.checkMail = false;
@@ -47,7 +47,7 @@ public class MailRes {
                 .builder()
                 .id(id)
                 .senderEmail(senderEmail)
-                .receiverEmail(receiverEmail)
+                .userId(userId)
                 .message(message)
                 .sendTime(sendTime)
                 .checkMail(false)

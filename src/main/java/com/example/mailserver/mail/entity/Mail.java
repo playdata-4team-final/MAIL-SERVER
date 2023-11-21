@@ -22,7 +22,7 @@ public class Mail {
     private Long id;
 
     private String senderEmail;
-    private String receiverEmail;
+    private String userId;
     private String title;
     private String message;
     private boolean checkMail;

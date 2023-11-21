@@ -3,17 +3,16 @@ package com.example.mailserver.mail.service;
 import com.example.mailserver.global.dto.MailDto;
 import com.example.mailserver.global.exception.NotFoundException;
 import com.example.mailserver.mail.entity.Mail;
-import com.example.mailserver.mail.entity.MemberEntity;
+import com.example.mailserver.member.MemberEntity;
 import com.example.mailserver.mail.entity.request.*;
 import com.example.mailserver.mail.entity.response.MailRes;
-import com.example.mailserver.mail.entity.response.MemberRes;
 import com.example.mailserver.mail.repository.MailRepository;
-import com.example.mailserver.mail.repository.MemberRepository;
+import com.example.mailserver.member.repository.MemberRepository;
+import com.example.mailserver.member.request.MemberRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class MailService {
     //쪽지 보내기
     public MailRes sendMail(SendRequest request){
 
-        MemberEntity memberEntity = memberRepository.findByUserEmail(request.getReceiverEmail()).orElse(null);
+        MemberEntity memberEntity = memberRepository.findByUserId(request.getUserId()).orElse(null);
         if(memberEntity != null) {
             Mail save = mailRepository.save(request.toEntity());
             MailRes mailRes = new MailRes(save);
@@ -49,7 +48,7 @@ public class MailService {
 
     //쪽지 제목 보기
     public List<MailRes> getAllMail(GetRequest getRequest){
-        List<MailDto> mailDtoList = mailRepository.findAllByReceiverId(getRequest.getReceiverEmail(), getRequest.getMajorId()).get();
+        List<MailDto> mailDtoList = mailRepository.findAllByReceiverId(getRequest.getUserId(), getRequest.getMajorId()).get();
 
         List<MailRes> resultList = new ArrayList<>();
         for(MailDto mail : mailDtoList){
@@ -73,7 +72,7 @@ public class MailService {
 
         for (MemberEntity member : members) {
             MailRes mail = new MailRes(Mail.builder().senderEmail(request.getSenderEmail()).build());
-            mail.setReceiverEmail(member.getId().toString());
+            mail.setUserId(member.getUserId());
             mail.setSendTime(LocalDateTime.now());
             mail.setMessage(request.getMessage());
 
@@ -98,6 +97,7 @@ public class MailService {
             mailRepository.deleteMailByIdsQuery(deleteRequest.getMailIds());
             return "Success Delete!";
     }
+
 
 
 }

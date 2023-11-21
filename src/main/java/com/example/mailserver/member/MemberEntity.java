@@ -1,12 +1,10 @@
-package com.example.mailserver.mail.entity;
+package com.example.mailserver.member;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.UUID;
 
 @Entity
 @Getter

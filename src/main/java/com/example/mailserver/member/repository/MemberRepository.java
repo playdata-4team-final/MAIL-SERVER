@@ -1,13 +1,12 @@
-package com.example.mailserver.mail.repository;
+package com.example.mailserver.member.repository;
 
 
-import com.example.mailserver.mail.entity.MemberEntity;
+import com.example.mailserver.member.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
-import java.util.UUID;
 
 public interface MemberRepository extends JpaRepository<MemberEntity, String> {
 

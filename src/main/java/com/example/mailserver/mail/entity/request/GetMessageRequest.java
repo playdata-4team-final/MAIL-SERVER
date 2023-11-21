@@ -12,7 +12,7 @@ public class GetMessageRequest {
 
     private Long id;
     private String senderEmail;
-    private String receiverEmail;
+    private String userId;
     private String message;
 
     public Mail toEntity(){
@@ -20,7 +20,7 @@ public class GetMessageRequest {
                 .builder()
                 .id(id)
                 .senderEmail(senderEmail)
-                .receiverEmail(receiverEmail)
+                .userId(userId)
                 .message(message)
                 .sendTime(LocalDateTime.now())
                 .checkMail(false)

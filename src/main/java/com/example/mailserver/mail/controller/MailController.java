@@ -1,20 +1,15 @@
 package com.example.mailserver.mail.controller;
 
 import com.example.mailserver.global.domain.response.LmsResponse;
-import com.example.mailserver.global.dto.MailDto;
-import com.example.mailserver.mail.entity.Mail;
-import com.example.mailserver.mail.entity.MemberEntity;
 import com.example.mailserver.mail.entity.request.*;
 import com.example.mailserver.mail.entity.response.MailRes;
-import com.example.mailserver.mail.entity.response.MemberRes;
 import com.example.mailserver.mail.service.MailService;
-import lombok.Getter;
+import com.example.mailserver.member.MemberEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,7 +20,7 @@ public class MailController {
 
     private final MailService mailService;
 
-    //majorName 찾아오기
+
     @GetMapping("/{name}")
     public LmsResponse<MemberEntity> getMajorId(@PathVariable String name){
         MemberEntity m = mailService.getMajorName(name);
@@ -76,6 +71,7 @@ public class MailController {
         String s = mailService.deleteMails(deleteRequest);
         return new LmsResponse<>(HttpStatus.OK, s, "서비스 성공", "", LocalDateTime.now());
     }
+
 
 
 }

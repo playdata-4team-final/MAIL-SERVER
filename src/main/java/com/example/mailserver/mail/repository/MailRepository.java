@@ -15,8 +15,8 @@ import java.util.Optional;
 public interface MailRepository
         extends JpaRepository<Mail,Long> {
 
-    @Query("select m from Mail as m where m.receiverEmail = :receiverEmail or m.majorId = :majorId")
-    Optional<List<MailDto>> findAllByReceiverId(@Param("receiverEmail") String receiverEmail, @Param("majorId")Long majorId);
+    @Query("select m from Mail as m where m.userId = :userId or m.majorId = :majorId")
+    Optional<List<MailDto>> findAllByReceiverId(@Param("userId") String userId, @Param("majorId")Long majorId);
 
     @Query("select m.message from Mail as m where m.id = :id")
     Optional <MailDto> findMessageById(@Param("id")Long id);

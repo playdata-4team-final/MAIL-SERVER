@@ -1,4 +1,4 @@
-package com.example.mailserver.mail.entity;
+package com.example.mailserver.member;
 
 public enum MemberStatus {
     NORMAL, FIRED
